@@ -11,32 +11,68 @@ import java.util.Calendar;
 
 @TeleOp(name = "OdometryWheelTest")
 public class OdometryWheelTest extends LinearOpMode {
+    private GamepadKeyboard keyboard1;
+    private int saveCount;
+
     private DcMotor odometryMotor;
 
     private String odometryFilePath;
-    private String fileContents;
+    private String odoBuffer;
     private FileWriter odoFileWriter;
 
-    private final double TPR = 20223.42;
-    private final double ODO_DIAMETER = 3.486; // 3.486 CM
+    /**
+     * 8192 TPR according to <a href="https://www.revrobotics.com/rev-11-1271/">REV Robotics</a>
+     */
+    private final double TPR = 8192.0;
+
+    /**
+     * 35 mm according to <a href="https://axon-robotics.com/products/omni">Axon Robotics</a>
+     */
+    private final double ODO_DIAMETER = 3.5;
+
+    /**
+     * Average of 3.533, 3.524, 3.537, 3.561, 3.574
+     * Measurements above are in centimeters.
+     */
+    private final double EFFECTIVE_ODO_DIAMETER = 3.5458;
 
     public void runOpMode() {
+        keyboard1 = new GamepadKeyboard(gamepad1);
+        saveCount = 0;
+
         initializeOdoMotor();
         initializeOdoFile();
 
         waitForStart();
-        double odometryReading = 0.0;
-        double distance = ticksToCm(odometryReading);
+
+        double odometryReading;
+        double rawDistance;
+        double effectiveDistance;
+        double adjustedDiameter;
+        double adjustedDistance;
         while (opModeIsActive()) {
             odometryReading = odometryMotor.getCurrentPosition();
-            distance = ticksToCm(odometryReading);
+            rawDistance = ticksToCm(odometryReading, ODO_DIAMETER);
+            effectiveDistance = ticksToCm(odometryReading, EFFECTIVE_ODO_DIAMETER);
+            adjustedDiameter = adjustDiameter(10.0, odometryReading);
+            adjustedDistance = ticksToCm(odometryReading, adjustedDiameter);
 
-            telemetry.addData("odometryReading", odometryReading);
-            telemetry.addData("distance", distance);
-            telemetry.update();
+            logLine("odometryReading: " + odometryReading);
+            logLine("rawDistance: " + rawDistance);
+            logLine("effectiveDistance: " + effectiveDistance);
+            logLine("adjustedDiameter: " + adjustedDiameter);
+            logLine("adjustedDistance: " + adjustedDistance);
+            logLine("saveCount: " + saveCount);
+            logLine("-----------------------------------------------");
+
+            if (keyboard1.activeBefore.contains("y")) {
+                writeLog();
+                saveCount++;
+            }
+
+            keyboard1.update();
+            updateLog();
         }
-
-        writeToOdoFile(distance + ", ");
 
         terminateOdoFile();
     }
@@ -45,7 +81,7 @@ public class OdometryWheelTest extends LinearOpMode {
         odometryFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() +
                 "/FIRST/OdometryData/odometryData.txt";
 
-        fileContents = "";
+        odoBuffer = "";
         try {
             odoFileWriter = new FileWriter(odometryFilePath, true);
         } catch (Exception exception) {
@@ -56,7 +92,6 @@ public class OdometryWheelTest extends LinearOpMode {
 
     private void terminateOdoFile() {
         try {
-            odoFileWriter.write(fileContents);
             odoFileWriter.close();
         } catch (Exception exception) {
             logException("closing odoFileWriter", exception);
@@ -64,8 +99,36 @@ public class OdometryWheelTest extends LinearOpMode {
         telemetry.update();
     }
 
-    private void writeToOdoFile(String str) {
-        fileContents += str;
+    private void logLine(String str) {
+        writeToOdoBuffer(str + "\n");
+        telemetry.addLine(str);
+    }
+
+    private void updateLog() {
+        clearOdoBuffer();
+        telemetry.update();
+    }
+
+    private void writeToOdoBuffer(String str) {
+        odoBuffer += str;
+    }
+
+    private void clearOdoBuffer() {
+        odoBuffer = "";
+    }
+
+    private void writeLog() {
+        writeToOdoFile();
+        telemetry.addLine("Wrote log to " + odometryFilePath);
+    }
+
+    private void writeToOdoFile() {
+        try {
+            odoFileWriter.write(odoBuffer);
+        } catch (Exception exception) {
+            logException("writing with odoFileWriter", exception);
+        }
+        telemetry.update();
     }
 
     private void initializeOdoMotor() {
@@ -78,8 +141,12 @@ public class OdometryWheelTest extends LinearOpMode {
         telemetry.addLine(exception.getMessage());
     }
 
-    private double ticksToCm(double ticks) {
-        return ticks * (1.0 / TPR) * (Math.PI * ODO_DIAMETER);
+    private double ticksToCm(double ticks, double diameter) {
+        return ticks * (1.0 / TPR) * (Math.PI * diameter);
+    }
+
+    private double adjustDiameter(double cm, double ticks) {
+        return (10.0 * TPR) / (ticks * Math.PI);
     }
 
     private String getCurrentDate() {

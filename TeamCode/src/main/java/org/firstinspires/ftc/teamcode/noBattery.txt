@@ -1,0 +1,66 @@
+odometryReading: 14929.0
+rawDistance: 20.038199284551645
+effectiveDistance: 20.30041343518949
+adjustedDiameter: 1.7466639343677495
+adjustedDistance: 9.999999999999998
+-----------------------------------------------
+odometryReading: 14899.0
+rawDistance: 19.997932288869645
+effectiveDistance: 20.259619517106852
+adjustedDiameter: 1.750180943430843
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14881.0
+rawDistance: 19.973772091460447
+effectiveDistance: 20.23514316625727
+adjustedDiameter: 1.7522979555255784
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14865.0
+rawDistance: 19.95229636043005
+effectiveDistance: 20.21338640994653
+adjustedDiameter: 1.7541840481786837
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14864.0
+rawDistance: 19.95095412724065
+effectiveDistance: 20.21202661267711
+adjustedDiameter: 1.754302063790106
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14843.0
+rawDistance: 19.92276723026325
+effectiveDistance: 20.183470870019264
+adjustedDiameter: 1.7567840649583057
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14804.0
+rawDistance: 19.870420135876653
+effectiveDistance: 20.130438776511838
+adjustedDiameter: 1.7614121775314868
+adjustedDistance: 9.999999999999998
+-----------------------------------------------
+odometryReading: 14815.0
+rawDistance: 19.885184700960053
+effectiveDistance: 20.14539654647547
+adjustedDiameter: 1.7601043453375724
+adjustedDistance: 10.000000000000002
+-----------------------------------------------
+odometryReading: 14802.0
+rawDistance: 19.867735669497854
+effectiveDistance: 20.127719181972996
+adjustedDiameter: 1.7616501740424357
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14745.0
+rawDistance: 19.79122837770206
+effectiveDistance: 20.050210737615984
+adjustedDiameter: 1.7684602154069944
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14713.0
+rawDistance: 19.74827691564126
+effectiveDistance: 20.006697224994504
+adjustedDiameter: 1.772306523222737
+adjustedDistance: 10.0
+-----------------------------------------------

@@ -1,0 +1,62 @@
+No weight:
+
+odometryReading: 14925.0
+rawDistance: 20.032830351794047
+effectiveDistance: 20.294974246111806
+adjustedDiameter: 1.747132052005101
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14900.0
+rawDistance: 19.999274522059046
+effectiveDistance: 20.260979314376275
+adjustedDiameter: 1.7500634816225593
+adjustedDistance: 10.000000000000002
+-----------------------------------------------
+odometryReading: 14875.0
+rawDistance: 19.96571869232405
+effectiveDistance: 20.226984382640744
+adjustedDiameter: 1.75300476478495
+adjustedDistance: 10.0
+-----------------------------------------------
+
+Battery (0.65 kg):
+
+odometryReading: 14949.0
+rawDistance: 20.065043948339643
+effectiveDistance: 20.327609380577915
+adjustedDiameter: 1.74432710389833
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14907.0
+rawDistance: 20.008670154384845
+effectiveDistance: 20.270497895262224
+adjustedDiameter: 1.7492416902244674
+adjustedDistance: 10.000000000000002
+-----------------------------------------------
+odometryReading: 14867.0
+rawDistance: 19.95498082680885
+effectiveDistance: 20.216106004485376
+adjustedDiameter: 1.7539480645843906
+adjustedDistance: 10.0
+-----------------------------------------------
+
+Drill box added (1.3 kg):
+
+odometryReading: 14913.0
+rawDistance: 20.016723553521246
+effectiveDistance: 20.27865667887875
+adjustedDiameter: 1.7485379116325441
+adjustedDistance: 9.999999999999998
+-----------------------------------------------
+odometryReading: 14860.0
+rawDistance: 19.945585194483048
+effectiveDistance: 20.206587423599427
+adjustedDiameter: 1.7547742850724182
+adjustedDistance: 10.0
+-----------------------------------------------
+odometryReading: 14794.0
+rawDistance: 19.856997803982654
+effectiveDistance: 20.116840803817624
+adjustedDiameter: 1.76260280358092
+adjustedDistance: 10.0
+-----------------------------------------------
